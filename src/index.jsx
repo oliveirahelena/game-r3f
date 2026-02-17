@@ -4,22 +4,33 @@ import { Canvas } from '@react-three/fiber'
 import Experience from './Experience.jsx'
 import { StrictMode } from 'react'
 import { Leva } from 'leva'
+import { KeyboardControls } from '@react-three/drei'
 
 const root = ReactDOM.createRoot(document.querySelector('#root'))
 
 root.render(
     <StrictMode>
         <Leva collapsed />
-        <Canvas
-            shadows
-            camera={{
-                fov: 45,
-                near: 0.1,
-                far: 200,
-                position: [2.5, 4, 6]
-            }}
+        <KeyboardControls
+            map={[
+                { name: 'forward', keys: ['ArrowUp', 'KeyW'] },
+                { name: 'backward', keys: ['ArrowDown', 'KeyS'] },
+                { name: 'leftward', keys: ['ArrowLeft', 'KeyA'] },
+                { name: 'rightward', keys: ['ArrowRight', 'KeyD'] },
+                { name: 'jump', keys: ['Space'] },
+            ]}
         >
-            <Experience />
-        </Canvas>
+            <Canvas
+                shadows
+                camera={{
+                    fov: 45,
+                    near: 0.1,
+                    far: 200,
+                    position: [2.5, 4, 6]
+                }}
+            >
+                <Experience />
+            </Canvas>
+        </KeyboardControls>
     </StrictMode>
 )
